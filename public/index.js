@@ -127,6 +127,12 @@ for(var i=0;i<rentals.length;i++)
   rentals[i].commission.insurance=insurance;
   rentals[i].commission.assistance=assistance;
   rentals[i].commission.drivy=drivy;
+  //exercice4
+  if(rentals[i].options.deductibleReduction==true)
+  {
+    rentals[i].price+=4;
+    rentals[i].commission.drivy+=4;
+  }
 }
 
 //list of actors for payment
