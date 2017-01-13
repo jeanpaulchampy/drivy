@@ -118,9 +118,14 @@ for(var i=0;i<rentals.length;i++)
   rentals[i].price-=reduction*rentals[i].price;
   //exercice3
   var insurance=0;
-  var roadsideAssistance=0;
+  var assistance=0;
   var drivy=0;
-
+  insurance=rentals[i].price/2;
+  assistance=day;
+  drivy=rentals[i].price-(insurance+assistance);
+  rentals[i].commission.insurance=insurance;
+  rentals[i].commission.assistance=assistance;
+  rentals[i].commission.drivy=drivy;
 }
 
 //list of actors for payment
