@@ -80,6 +80,48 @@ var rentals = [{
     'drivy': 0
   }
 }];
+console.log(rentals[0].price);
+
+//exercice1
+for(var i=0;i<rentals.length;i++)
+{
+  var carID=rentals[i].carId;
+  var km=rentals[i].distance;
+  var oneDay=24*60*60*1000;
+  var firstDate=new Date(rentals[i].returnDate);
+  var secondDate=new Date(rentals[i].pickupDate);
+  var day=1+Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay)));
+  //rentals[i].returnDate-rentals[i].pickupDate;
+  for(var j=0;j<cars.length;j++)
+  {
+    if(carID==cars[j].id)
+    {
+      var pricePerKm=cars[j].pricePerKm;
+      var pricePerDay=cars[j].pricePerDay;
+    }
+  }
+  rentals[i].price=pricePerKm*km+pricePerDay*day;
+  //exercice2
+  var reduction=0;
+  if(day>1)
+  {
+    reduction=10/100;
+  }
+  if(day>4)
+  {
+    reduction=30/100;
+  }
+  if(day>10)
+  {
+    reduction=50/100;
+  }
+  rentals[i].price-=reduction*rentals[i].price;
+  //exercice3
+  var insurance=0;
+  var roadsideAssistance=0;
+  var drivy=0;
+
+}
 
 //list of actors for payment
 //useful from exercise 5
