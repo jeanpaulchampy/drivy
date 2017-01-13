@@ -173,16 +173,21 @@ function reduction(day)
   }
   return reduction;
 }
+function convertDate(date1,date2)
+{
+  var firstDate=new Date(date1);
+  var secondDate=new Date(date2);
+  var day=1+Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay)));
+  return day;
+}
 //exercice1
 for(var i=0;i<rentals.length;i++)
 {
   var carID=rentals[i].carId;
   var km=rentals[i].distance;
   var oneDay=24*60*60*1000;
-  var firstDate=new Date(rentals[i].returnDate);
-  var secondDate=new Date(rentals[i].pickupDate);
-  var day=1+Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay)));
-  //rentals[i].returnDate-rentals[i].pickupDate;
+  //fontcion convertDate defini plus haut
+  var day=convertDate(rentals[i].returnDate,rentals[i].pickupDate);
   for(var j=0;j<cars.length;j++)
   {
     if(carID==cars[j].id)
@@ -193,19 +198,7 @@ for(var i=0;i<rentals.length;i++)
   }
   rentals[i].price=pricePerKm*km+pricePerDay*day;
   //exercice2
-  /*var reduction=0;
-  if(day>1)
-  {
-    reduction=10/100;
-  }
-  if(day>4)
-  {
-    reduction=30/100;
-  }
-  if(day>10)
-  {
-    reduction=50/100;
-  }*/
+  //fontion reduction(day) defini plus haut
 
   rentals[i].price=pricePerKm*km+pricePerDay*day-pricePerDay*day*reduction(day);
   //exercice3
